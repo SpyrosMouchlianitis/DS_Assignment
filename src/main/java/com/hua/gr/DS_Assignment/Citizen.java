@@ -1,5 +1,11 @@
 package com.hua.gr.DS_Assignment;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Citizen")
 public class Citizen {
     private String firstName;
     private String lastName;
@@ -11,6 +17,7 @@ public class Citizen {
     private String militaryNumber;
     private String file;
     private String reasonOfPostpone;
+    private Long id;
 
     public String getFirstName() {
         return firstName;
@@ -100,5 +107,14 @@ public class Citizen {
     public boolean search() {
         //TODO
         return true;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
     }
 }
