@@ -20,13 +20,4 @@ public class DsAssignmentApplication {
 		SpringApplication.run(DsAssignmentApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner run(CitizenRepository citizenRepository) throws Exception {
-		return (String[] args) -> {
-			Citizen citizen = new Citizen("Spyros", "Mouchlianitis", "spirosgsaaa@gmail.com", 1234, 21958, "Athens", "20/08/2001", "123456789", "file.txt", "Why", 1);
-			citizenRepository.save(citizen);
-			citizenRepository.findAll().forEach(System.out::println);
-		};
-	}
-
 }

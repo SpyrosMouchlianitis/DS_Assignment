@@ -1,5 +1,6 @@
 package com.hua.gr.DS_Assignment;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,38 +11,17 @@ import javax.persistence.Persistence;
 @RestController
 public class CitizenController {
 
+    @Autowired
+    private CitizenRepository citizenRepository;
+
     @GetMapping("/citizen")
     public  String index() {
 
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("Users");
-        EntityManager em=emf.createEntityManager();
-        em.getTransaction().begin();
+        Citizen citizen = new Citizen("Tolis", "Mouchlianitis", "spirosgsaaa@gmail.com", 1234, 21958, "Athens", "20/08/2001", "123456789", "file.txt", "Why", 2);
 
+        citizenRepository.save(citizen);
 
-
-        //Return all  users
-        Citizen citizen = new Citizen();
-        citizen.setFirstName("Spyros");
-        citizen.setLastName("Mouchlianitis");
-        citizen.setEmail("spiros@gmail.com");
-        citizen.setPhoneNumber(1234);
-        citizen.setAFM(21958);
-        citizen.setPlaceOfBirth("Athens");
-        citizen.setDateOfBirth("20/08/2001");
-        citizen.setMilitaryNumber("123456");
-        citizen.setFile("file.txt");
-        citizen.setReasonOfPostpone("Why not");
-        citizen.setId(1);
-
-        em.persist(citizen);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-
-
-
-        return citizen.toString();
+        return citizenRepository.findAll().toString();
     }
 
 
