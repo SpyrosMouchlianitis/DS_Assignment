@@ -3,7 +3,6 @@ package com.hua.gr.DS_Assignment;
 public class UserAdmin {
     private String firstName;
     private String lastName;
-    private String userName;
     private String email;
     private String password;
 
@@ -21,14 +20,6 @@ public class UserAdmin {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
