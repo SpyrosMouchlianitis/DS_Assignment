@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +16,36 @@ public class CitizenController {
     @GetMapping("/citizen")
     public  String index() {
 
+        EntityManagerFactory emf= Persistence.createEntityManagerFactory("Users");
+        EntityManager em=emf.createEntityManager();
+        em.getTransaction().begin();
+
+
+
         //Return all  users
-        List<Citizen> citizens = new ArrayList<>();
-        citizens.add(new Citizen("Spyros", "Mouchlianitis", "spiros@gmail.com", 1234, 21958, "Athens", "20/08/2001", "123456", "file.txt", "Why not", 1));
-        citizens.add(new Citizen("Tolis", "Dimitriou", "aposdimit@gmail.com", 4321, 219138, "Athens", "02/02/2001", "123456789", "file1.txt", "Because!", 2));
-        return citizens.toString();
+        Citizen citizen = new Citizen();
+        citizen.setFirstName("Spyros");
+        citizen.setLastName("Mouchlianitis");
+        citizen.setEmail("spiros@gmail.com");
+        citizen.setPhoneNumber(1234);
+        citizen.setAFM(21958);
+        citizen.setPlaceOfBirth("Athens");
+        citizen.setDateOfBirth("20/08/2001");
+        citizen.setMilitaryNumber("123456");
+        citizen.setFile("file.txt");
+        citizen.setReasonOfPostpone("Why not");
+        citizen.setId(1);
+
+        em.persist(citizen);
+        em.getTransaction().commit();
+        emf.close();
+        em.close();
+
+
+
+
+        return citizen.toString();
     }
+
+
 }
