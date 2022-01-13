@@ -28,4 +28,24 @@ public class UserCatalog {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public void deleteCitizen (Citizen citizen) {
+        //TODO
+    }
+
+    public void modifyCitizen (Citizen citizen) {
+        //TODO
+    }
+
+    public void insertRole () {
+        //TODO
+    }
+
+    public void deleteRole() {
+        //TODO
+    }
+
+    public void modifyRole() {
+        //TODO
+    }
 }

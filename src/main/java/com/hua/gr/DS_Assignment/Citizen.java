@@ -1,11 +1,5 @@
 package com.hua.gr.DS_Assignment;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Citizen")
 public class Citizen {
     private String firstName;
     private String lastName;
@@ -17,7 +11,24 @@ public class Citizen {
     private String militaryNumber;
     private String file;
     private String reasonOfPostpone;
-    private Long id;
+    private int id;
+
+    public Citizen() {
+    }
+
+    public Citizen(String firstName, String lastName, String email, int phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.AFM = AFM;
+        this.placeOfBirth = placeOfBirth;
+        this.dateOfBirth = dateOfBirth;
+        this.militaryNumber = militaryNumber;
+        this.file = file;
+        this.reasonOfPostpone = reasonOfPostpone;
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -100,7 +111,9 @@ public class Citizen {
     }
 
     public boolean submitForm() {
-        //TODO
+        //TODO Search if form is already submitted
+        ApplicationForm applicationForm = new ApplicationForm(this);
+        //TODO submit form
         return true;
     };
 
@@ -109,12 +122,16 @@ public class Citizen {
         return true;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Id
-    public Long getId() {
+    public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "[firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" +phoneNumber+ ", AFM=" +AFM+ ", placeOfBirth=" +placeOfBirth+ ", dateOfBirth=" +dateOfBirth+ ", militaryNumber=" + militaryNumber+ ", file=" +file+ ", reasonOfPostpone=" +reasonOfPostpone+ ", id=" +id+ "]";
     }
 }
