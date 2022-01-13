@@ -1,14 +1,11 @@
 package com.hua.gr.DS_Assignment;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class CitizenController {
@@ -38,8 +35,8 @@ public class CitizenController {
 
         em.persist(citizen);
         em.getTransaction().commit();
-        emf.close();
         em.close();
+        emf.close();
 
 
 

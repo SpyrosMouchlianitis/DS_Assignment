@@ -1,5 +1,10 @@
 package com.hua.gr.DS_Assignment;
 
+import com.hua.gr.DS_Assignment.ApplicationForm;
+
+import javax.persistence.*;
+
+@Entity
 public class Citizen {
     private String firstName;
     private String lastName;
@@ -11,6 +16,9 @@ public class Citizen {
     private String militaryNumber;
     private String file;
     private String reasonOfPostpone;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     public Citizen() {
