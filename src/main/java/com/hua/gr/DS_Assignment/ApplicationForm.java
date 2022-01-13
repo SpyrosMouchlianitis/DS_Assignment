@@ -6,5 +6,5 @@ public class ApplicationForm {
     public ApplicationForm(Citizen citizen) {
         this.citizen = citizen;
     }
-
+    //this is a comment
 }
