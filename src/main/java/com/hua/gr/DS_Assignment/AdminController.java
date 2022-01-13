@@ -19,4 +19,9 @@ public class AdminController {
         //It will send all the data to the front-end for the admin if the login is succesfully
     }
 
+    @GetMapping("/test")
+    public void test(){
+
+    }
+
 }

@@ -4,5 +4,10 @@ package com.hua.gr.DS_Assignment;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface CitizenRepository extends CrudRepository<Citizen, Integer> {
+
+    List<Citizen> findByFirstName(String firstName);
+
 }
