@@ -8,45 +8,45 @@ import javax.persistence.*;
 @Table(name = "citizen")
 public class Citizen {
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private int phoneNumber;
 
-    @Column(name = "AFM")
+    @Column(name = "afm")
     private int AFM;
 
-    @Column(name = "placeOfBirth")
+    @Column(name = "place_of_birth")
     private String placeOfBirth;
 
-    @Column(name = "dateOfBirth")
+    @Column(name = "date_of_birth")
     private String dateOfBirth;
 
-    @Column(name = "militaryNumber")
+    @Column(name = "military_number")
     private String militaryNumber;
 
     @Column(name = "file")
     private String file;
 
-    @Column(name = "reasonOfPostopne")
+    @Column(name = "reason_of_postpone")
     private String reasonOfPostpone;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, String email, int phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone, int id) {
+    public Citizen(String firstName, String lastName, String email, int phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -57,7 +57,7 @@ public class Citizen {
         this.militaryNumber = militaryNumber;
         this.file = file;
         this.reasonOfPostpone = reasonOfPostpone;
-        this.id = id;
+        //There is no id because it has AUTO
     }
 
     public String getFirstName() {
