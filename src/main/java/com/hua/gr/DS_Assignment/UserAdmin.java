@@ -1,15 +1,25 @@
 package com.hua.gr.DS_Assignment;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "UserAdmin")
 public class UserAdmin {
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
     @Id
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
     public String getFirstName() {

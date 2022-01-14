@@ -5,19 +5,41 @@ import com.hua.gr.DS_Assignment.ApplicationForm;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "citizen")
 public class Citizen {
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phoneNumber")
     private int phoneNumber;
+
+    @Column(name = "AFM")
     private int AFM;
+
+    @Column(name = "placeOfBirth")
     private String placeOfBirth;
+
+    @Column(name = "dateOfBirth")
     private String dateOfBirth;
+
+    @Column(name = "militaryNumber")
     private String militaryNumber;
+
+    @Column(name = "file")
     private String file;
+
+    @Column(name = "reasonOfPostopne")
     private String reasonOfPostpone;
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
