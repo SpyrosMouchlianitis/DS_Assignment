@@ -21,6 +21,8 @@ public class CitizenController {
 
         citizenRepository.save(citizen);
 
+        System.out.println(citizenRepository.findByFirstName("Spyros"));
+
         return citizenRepository.findAll().toString();
     }
 

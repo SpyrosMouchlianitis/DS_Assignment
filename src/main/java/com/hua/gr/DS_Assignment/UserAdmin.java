@@ -5,7 +5,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user-admin")
 public class UserAdmin {
     private String firstName;
     private String lastName;
