@@ -65,7 +65,11 @@ public class Citizen {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        try {
+            this.firstName = firstName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getLastName() {
@@ -73,7 +77,11 @@ public class Citizen {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        try {
+            this.lastName = lastName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getEmail() {
@@ -81,7 +89,11 @@ public class Citizen {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        try {
+            this.email = email;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public int getPhoneNumber() {
@@ -89,7 +101,11 @@ public class Citizen {
     }
 
     public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        try {
+            this.phoneNumber = phoneNumber;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public int getAFM() {
@@ -97,7 +113,11 @@ public class Citizen {
     }
 
     public void setAFM(int AFM) {
-        this.AFM = AFM;
+        try {
+            this.AFM = AFM;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getPlaceOfBirth() {
@@ -105,7 +125,11 @@ public class Citizen {
     }
 
     public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
+        try {
+            this.placeOfBirth = placeOfBirth;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getDateOfBirth() {
@@ -113,7 +137,11 @@ public class Citizen {
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        try {
+            this.dateOfBirth = dateOfBirth;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getMilitaryNumber() {
@@ -121,7 +149,11 @@ public class Citizen {
     }
 
     public void setMilitaryNumber(String militaryNumber) {
-        this.militaryNumber = militaryNumber;
+        try {
+            this.militaryNumber = militaryNumber;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getFile() {
@@ -129,7 +161,11 @@ public class Citizen {
     }
 
     public void setFile(String file) {
-        this.file = file;
+        try {
+            this.file = file;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getReasonOfPostpone() {
@@ -137,7 +173,11 @@ public class Citizen {
     }
 
     public void setReasonOfPostpone(String reasonOfPostpone) {
-        this.reasonOfPostpone = reasonOfPostpone;
+        try {
+            this.reasonOfPostpone = reasonOfPostpone;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public boolean submitForm() {
@@ -153,7 +193,11 @@ public class Citizen {
     }
 
     public void setId(int id) {
-        this.id = id;
+        try {
+            this.id = id;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public int getId() {
