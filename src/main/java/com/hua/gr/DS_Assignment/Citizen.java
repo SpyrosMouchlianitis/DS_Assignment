@@ -1,7 +1,5 @@
 package com.hua.gr.DS_Assignment;
 
-import com.hua.gr.DS_Assignment.ApplicationForm;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +16,7 @@ public class Citizen {
     private String email;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "afm")
     private int AFM;
@@ -46,7 +44,7 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, String email, int phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
+    public Citizen(String firstName, String lastName, String email, String phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -65,7 +63,11 @@ public class Citizen {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        try {
+            this.firstName = firstName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getLastName() {
@@ -73,7 +75,11 @@ public class Citizen {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        try {
+            this.lastName = lastName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getEmail() {
@@ -81,15 +87,23 @@ public class Citizen {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        try {
+            this.email = email;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        try {
+            this.phoneNumber = phoneNumber;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public int getAFM() {
@@ -97,7 +111,11 @@ public class Citizen {
     }
 
     public void setAFM(int AFM) {
-        this.AFM = AFM;
+        try {
+            this.AFM = AFM;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getPlaceOfBirth() {
@@ -105,7 +123,11 @@ public class Citizen {
     }
 
     public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
+        try {
+            this.placeOfBirth = placeOfBirth;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getDateOfBirth() {
@@ -113,7 +135,11 @@ public class Citizen {
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        try {
+            this.dateOfBirth = dateOfBirth;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getMilitaryNumber() {
@@ -121,7 +147,11 @@ public class Citizen {
     }
 
     public void setMilitaryNumber(String militaryNumber) {
-        this.militaryNumber = militaryNumber;
+        try {
+            this.militaryNumber = militaryNumber;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getFile() {
@@ -129,7 +159,11 @@ public class Citizen {
     }
 
     public void setFile(String file) {
-        this.file = file;
+        try {
+            this.file = file;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getReasonOfPostpone() {
@@ -137,7 +171,11 @@ public class Citizen {
     }
 
     public void setReasonOfPostpone(String reasonOfPostpone) {
-        this.reasonOfPostpone = reasonOfPostpone;
+        try {
+            this.reasonOfPostpone = reasonOfPostpone;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public boolean submitForm() {
@@ -153,7 +191,11 @@ public class Citizen {
     }
 
     public void setId(int id) {
-        this.id = id;
+        try {
+            this.id = id;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public int getId() {

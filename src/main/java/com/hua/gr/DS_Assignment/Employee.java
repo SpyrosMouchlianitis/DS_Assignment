@@ -12,7 +12,11 @@ public class Employee {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        try {
+            this.firstName = firstName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getLastName() {
@@ -20,7 +24,11 @@ public class Employee {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        try {
+            this.lastName = lastName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getUserName() {
@@ -28,7 +36,11 @@ public class Employee {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        try {
+            this.userName = userName;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getEmail() {
@@ -36,7 +48,11 @@ public class Employee {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        try {
+            this.email = email;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public String getPassword() {
@@ -44,7 +60,11 @@ public class Employee {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            this.password = password;
+        } catch (Exception e) {
+            //TODO alert user
+        }
     }
 
     public boolean acceptPostpone() {
