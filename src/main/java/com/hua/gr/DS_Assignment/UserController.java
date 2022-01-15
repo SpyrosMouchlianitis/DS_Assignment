@@ -82,11 +82,72 @@ public class UserController {
     @GetMapping("/user/delete")
     public void delete(@RequestParam String email){
 
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(UserCatalog.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+
+        try {
+
+            session.beginTransaction();
+
+            String query1 = "from UserCatalog u where u.email= :email";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("email", email);
+
+            List<UserCatalog> search = finalQuery.getResultList();
+
+
+            for (UserCatalog u : search) {
+                System.out.println(u.getFirstName());
+            }
+
+            //It needs to print the results to ui and change the inputs
+
+            session.getTransaction().commit();
+
+
+        }finally {
+            factory.close();
+        }
+
     }
 
 
     @GetMapping("/user/modify")
     public void modify(@RequestParam String email){
+
+
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(UserCatalog.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+
+        try {
+
+            session.beginTransaction();
+
+            String query1 = "from UserCatalog u where u.email= :email";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("email", email);
+
+            List<UserCatalog> search = finalQuery.getResultList();
+
+
+            for (UserCatalog u : search) {
+                System.out.println(u.getFirstName());
+            }
+
+            //It needs to print the results to ui and change the inputs
+
+            session.getTransaction().commit();
+
+
+        }finally {
+            factory.close();
+        }
 
     }
 
