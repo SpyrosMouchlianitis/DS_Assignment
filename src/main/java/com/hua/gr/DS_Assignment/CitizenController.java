@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 @RestController
 public class CitizenController {
@@ -55,7 +56,6 @@ public class CitizenController {
     @GetMapping("/citizens")
     public  void index() {
 
-        Citizen citizen = new Citizen("Apostolis", "Dimitriou", "spirosgsaaa@gmail.com", 1234, 21958, "Athens", "20/08/2001", "123456789", "file.txt", "Why");
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(Citizen.class).buildSessionFactory();
@@ -66,7 +66,13 @@ public class CitizenController {
 
             session.beginTransaction();
 
-            session.save(citizen);
+            List<Citizen> citizens = session.createQuery("from Citizen").getResultList();
+
+            System.out.println("all");
+
+            for (Citizen c : citizens) {
+                System.out.println(c.getFirstName());
+            }
 
             session.getTransaction().commit();
 
