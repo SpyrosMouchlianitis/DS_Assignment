@@ -1,17 +1,12 @@
 package com.hua.gr.DS_Assignment;
 
-import com.sun.xml.bind.v2.TODO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 @RestController
@@ -23,7 +18,7 @@ public class CitizenController {
     //Insert new user in database
     @GetMapping("/citizens/new")
     public  void insertNewCitizen(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-                                  @RequestParam Integer phoneNumber, @RequestParam int afm, @RequestParam String placeOfBirth,
+                                  @RequestParam String phoneNumber, @RequestParam int afm, @RequestParam String placeOfBirth,
                                   @RequestParam String dateOfBirth, @RequestParam String militaryNumber, @RequestParam String file,
                                   @RequestParam String reasonOfPostpone) {
 

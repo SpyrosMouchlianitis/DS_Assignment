@@ -1,7 +1,5 @@
 package com.hua.gr.DS_Assignment;
 
-import com.hua.gr.DS_Assignment.ApplicationForm;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +16,7 @@ public class Citizen {
     private String email;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "afm")
     private int AFM;
@@ -46,7 +44,7 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, String email, int phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
+    public Citizen(String firstName, String lastName, String email, String phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -96,11 +94,11 @@ public class Citizen {
         }
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         try {
             this.phoneNumber = phoneNumber;
         } catch (Exception e) {
