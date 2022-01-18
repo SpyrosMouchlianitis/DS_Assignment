@@ -7,7 +7,7 @@
     <session-factory>
 
         <!-- JDBC Database connection settings -->
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4465141</property>
         <property name="connection.username">sql4465141</property>
         <property name="connection.password">Z7i7r9IRAN</property>

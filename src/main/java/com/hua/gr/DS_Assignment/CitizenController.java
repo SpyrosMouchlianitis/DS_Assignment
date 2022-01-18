@@ -3,7 +3,9 @@ package com.hua.gr.DS_Assignment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,8 +50,8 @@ public class CitizenController {
     }
 
     //Print all users in database
-    @GetMapping("/citizens")
-    public  void index() {
+    @RequestMapping("/citizens")
+    public ResponseEntity<List<Citizen>> citizens() {
 
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
@@ -58,20 +60,10 @@ public class CitizenController {
         Session session = factory.getCurrentSession();
 
         try {
-
             session.beginTransaction();
-
             List<Citizen> citizens = session.createQuery("from Citizen").getResultList();
-
-            System.out.println("all");
-
-            for (Citizen c : citizens) {
-                System.out.println(c.getFirstName());
-            }
-
             session.getTransaction().commit();
-
-
+            return ResponseEntity.ok(citizens);
         }finally {
             factory.close();
         }
