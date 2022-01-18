@@ -29,6 +29,9 @@ public class UserCatalog {
     @Column(name = "permission")
     private Integer permission;
 
+    @Column(name = "enable")
+    private Integer enable;
+
     public Integer getPermission() {
         return permission;
     }
