@@ -36,15 +36,21 @@ public class Citizen {
     @Column(name = "reason_of_postpone")
     private String reasonOfPostpone;
 
+    @Column(name = "progress")
+    private String progress;
+
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
+
+
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, String email, String phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone) {
+    public Citizen(String firstName, String lastName, String email, String phoneNumber, int AFM, String placeOfBirth, String dateOfBirth, String militaryNumber, String file, String reasonOfPostpone,String progress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -55,6 +61,7 @@ public class Citizen {
         this.militaryNumber = militaryNumber;
         this.file = file;
         this.reasonOfPostpone = reasonOfPostpone;
+        this.progress = progress;
         //There is no id because it has AUTO
     }
 
@@ -178,16 +185,19 @@ public class Citizen {
         }
     }
 
-    public boolean submitForm() {
-        //TODO Search if form is already submitted
-        ApplicationForm applicationForm = new ApplicationForm(this);
-        //TODO submit form
-        return true;
-    };
+
 
     public boolean search() {
         //TODO
         return true;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     public void setId(int id) {

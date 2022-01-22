@@ -1,7 +1,5 @@
 package com.hua.gr.DS_Assignment;
 
-import com.sun.jdi.event.ExceptionEvent;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,19 +24,21 @@ public class UserCatalog {
 
     //Employee has number 0
     //Boss has number 1
-    @Column(name = "permission")
-    private Integer permission;
+    @Column(name = "authority")
+    private String authority;
 
-    @Column(name = "enable")
-    private Integer enable;
 
-    public Integer getPermission() {
-        return permission;
+
+    @Column(name = "enabled")
+    private Integer enabled ;
+
+    public String getPermission() {
+        return authority;
     }
 
-    public void setPermission(Integer permission) {
+    public void setAuthority(String authority) {
         try {
-            this.permission = permission;
+            this.authority = authority;
         } catch (Exception e) {
             //TODO alert user
         }
@@ -95,5 +95,14 @@ public class UserCatalog {
     public boolean approve() {
         //TODO
         return true;
+    }
+
+
+    public Integer getEnabled() {
+        return enabled ;
+    }
+
+    public void setEnabled(Integer enable) {
+        this.enabled  = enable;
     }
 }

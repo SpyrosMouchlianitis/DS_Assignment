@@ -24,7 +24,7 @@ public class UserController {
         newUser.setLastName(lastName);
         newUser.setEmail(email);
         newUser.setPassword(password);
-        newUser.setPermission(0);
+        newUser.setAuthority("ROLE_USER");
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(UserCatalog.class).buildSessionFactory();

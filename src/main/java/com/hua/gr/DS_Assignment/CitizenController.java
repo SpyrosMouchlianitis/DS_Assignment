@@ -4,13 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class CitizenController {
 
@@ -28,7 +26,7 @@ public class CitizenController {
 
         Citizen citizen = new Citizen(firstName, lastName, email,
                 phoneNumber, afm, placeOfBirth, dateOfBirth, militaryNumber,
-                file, reasonOfPostpone);
+                file, reasonOfPostpone, "Καταχωρημένη");
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(Citizen.class).buildSessionFactory();
@@ -62,6 +60,7 @@ public class CitizenController {
         try {
             session.beginTransaction();
             List<Citizen> citizens = session.createQuery("from Citizen").getResultList();
+
             session.getTransaction().commit();
             return ResponseEntity.ok(citizens);
         }finally {
