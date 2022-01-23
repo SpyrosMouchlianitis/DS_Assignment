@@ -31,9 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
-                .antMatchers("/**").hasRole("ADMIN")
+                .antMatchers("/login").hasRole("ADMIN")
                 .and().csrf().disable().headers().frameOptions().disable()
-                .and().formLogin().permitAll().and().logout().permitAll();
+                .and().formLogin().permitAll().defaultSuccessUrl("http://localhost:3000/dashboard-admin", true)
+                .and().logout().permitAll();
     }
 
 

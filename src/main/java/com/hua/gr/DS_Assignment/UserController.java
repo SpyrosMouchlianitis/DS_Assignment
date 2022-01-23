@@ -4,12 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 
 @RestController
 public class UserController {
@@ -149,6 +148,24 @@ public class UserController {
             factory.close();
         }
 
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserCatalog>> users() {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(UserCatalog.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            List<UserCatalog> users = session.createQuery("from UserCatalog").getResultList();
+
+            session.getTransaction().commit();
+            return ResponseEntity.ok(users);
+        }finally {
+            factory.close();
+        }
     }
 
 
