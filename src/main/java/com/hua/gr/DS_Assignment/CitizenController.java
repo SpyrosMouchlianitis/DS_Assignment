@@ -3,6 +3,7 @@ package com.hua.gr.DS_Assignment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +27,13 @@ public class CitizenController {
 
         Citizen citizen = new Citizen(firstName, lastName, email,
                 phoneNumber, afm, placeOfBirth, dateOfBirth, militaryNumber,
-                file, reasonOfPostpone, "Καταχωρημένη");
+                file, reasonOfPostpone, "K");
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(Citizen.class).buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-
-        try {
+        try (factory) {
+            Session session = factory.getCurrentSession();
 
             session.beginTransaction();
 
@@ -42,8 +42,8 @@ public class CitizenController {
             session.getTransaction().commit();
 
 
-        }finally {
-            factory.close();
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -59,13 +59,102 @@ public class CitizenController {
 
         try {
             session.beginTransaction();
-            List<Citizen> citizens = session.createQuery("from Citizen").getResultList();
+
+            String query1 = "from Citizen c where progress = :status";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("status", "K");
+
+            List<Citizen> citizens = finalQuery.getResultList();
 
             session.getTransaction().commit();
             return ResponseEntity.ok(citizens);
         }finally {
             factory.close();
         }
+    }
+
+    @RequestMapping("/citizen/delete")
+    public void deleteUser(@RequestParam int id){
+
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(Citizen.class).buildSessionFactory();
+
+        try (factory) {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
+
+
+            String query1 = "delete from Citizen c where c.id = :index";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("index", id);
+
+            finalQuery.executeUpdate();
+            session.getTransaction().commit();
+        }
+
+    }
+
+    @RequestMapping("/citizen/accept")
+    public void acceptUser(@RequestParam int id){
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(Citizen.class).buildSessionFactory();
+
+        try (factory) {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
+
+
+            String query1 = "update Citizen c set c.progress = :progress where c.id = :id";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("progress", "KT");
+            finalQuery.setParameter("id", id);
+
+            finalQuery.executeUpdate();
+            session.getTransaction().commit();
+        }
+
+    }
+
+    @RequestMapping("/citizen/update")
+    public void updateUser(@RequestParam int id,@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+                           @RequestParam String phoneNumber, @RequestParam int afm, @RequestParam String placeOfBirth,
+                           @RequestParam String dateOfBirth, @RequestParam String militaryNumber,
+                           @RequestParam String reasonOfPostpone){
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(Citizen.class).buildSessionFactory();
+
+        try (factory) {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
+
+
+            String query1 = "update Citizen c set c.firstName = :firstName" +
+                    " ,c.lastName = :lastName " +
+                    " ,c.email = :email " +
+                    " ,c.phoneNumber = :phoneNumber " +
+                    " ,c.AFM = :afm " +
+                    " ,c.placeOfBirth = :placeOfBirth " +
+                    " ,c.dateOfBirth = :dateOfBirth " +
+                    " ,c.militaryNumber = :militaryNumber " +
+                    " ,c.reasonOfPostpone = :reasonOfPostpone " +
+                    "where c.id = :id";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("firstName", firstName);
+            finalQuery.setParameter("lastName", lastName);
+            finalQuery.setParameter("email", email);
+            finalQuery.setParameter("phoneNumber", phoneNumber);
+            finalQuery.setParameter("afm", afm);
+            finalQuery.setParameter("placeOfBirth", placeOfBirth);
+            finalQuery.setParameter("dateOfBirth", dateOfBirth);
+            finalQuery.setParameter("militaryNumber", militaryNumber);
+            finalQuery.setParameter("reasonOfPostpone", reasonOfPostpone);
+
+            finalQuery.setParameter("id", id);
+
+            finalQuery.executeUpdate();
+            session.getTransaction().commit();
+        }
+
     }
 
 
