@@ -47,9 +47,9 @@ public class CitizenController {
         }
     }
 
-    //Print all users in database
-    @RequestMapping("/citizens")
-    public ResponseEntity<List<Citizen>> citizens() {
+    //Print all users for employee
+    @RequestMapping("/citizens/employee")
+    public ResponseEntity<List<Citizen>> citizensEmployee() {
 
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
@@ -68,6 +68,32 @@ public class CitizenController {
 
             session.getTransaction().commit();
             return ResponseEntity.ok(citizens);
+        }finally {
+            factory.close();
+        }
+    }
+
+    //Print all users for admin
+    @RequestMapping("/citizens/admin")
+    public ResponseEntity<List<Citizen>> citizensAdmin() {
+
+
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(Citizen.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+
+            String query1 = "from Citizen c where progress = :status";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("status", "KT");
+
+            List<Citizen> citizensForAdmin = finalQuery.getResultList();
+
+            session.getTransaction().commit();
+            return ResponseEntity.ok(citizensForAdmin);
         }finally {
             factory.close();
         }

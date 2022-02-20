@@ -114,38 +114,33 @@ public class UserController {
     }
 
 
-    @GetMapping("/user/modify")
-    public void modify(@RequestParam String email){
-
-
+    @RequestMapping("/user/update")
+    public void updateUser(@RequestParam int id,@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+                            @RequestParam String permission){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(UserCatalog.class).buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-
-
-        try {
-
+        try (factory) {
+            Session session = factory.getCurrentSession();
             session.beginTransaction();
 
-            String query1 = "from UserCatalog u where u.email= :email";
+
+            String query1 = "update UserCatalog u set u.firstName = :firstName" +
+                    " ,u.lastName = :lastName " +
+                    " ,u.email = :email " +
+                    " ,u.authority = :authority " +
+                    "where u.id = :id";
             Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("firstName", firstName);
+            finalQuery.setParameter("lastName", lastName);
             finalQuery.setParameter("email", email);
+            finalQuery.setParameter("authority", permission);
 
-            List<UserCatalog> search = finalQuery.getResultList();
 
+            finalQuery.setParameter("id", id);
 
-            for (UserCatalog u : search) {
-                System.out.println(u.getFirstName());
-            }
-
-            //It needs to print the results to ui and change the inputs
-
+            finalQuery.executeUpdate();
             session.getTransaction().commit();
-
-
-        }finally {
-            factory.close();
         }
 
     }

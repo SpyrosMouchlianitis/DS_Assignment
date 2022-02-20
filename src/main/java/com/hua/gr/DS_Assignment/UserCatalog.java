@@ -1,9 +1,6 @@
 package com.hua.gr.DS_Assignment;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_catalog")
@@ -15,7 +12,7 @@ public class UserCatalog {
     @Column(name = "last_name")
     private String lastName;
 
-    @Id
+
     @Column(name = "email")
     private String email;
 
@@ -31,6 +28,13 @@ public class UserCatalog {
 
     @Column(name = "enabled")
     private Integer enabled ;
+
+
+
+    @Id
+    @Column(name = "id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     public String getPermission() {
         return authority;
@@ -104,5 +108,13 @@ public class UserCatalog {
 
     public void setEnabled(Integer enable) {
         this.enabled  = enable;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
