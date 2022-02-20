@@ -36,6 +36,22 @@ public class UserCatalog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    public UserCatalog() {
+    }
+
+
+    public UserCatalog(String firstName, String lastName, String email, String password,int enabled, String authority) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.authority = authority;
+    }
+
+
+
+
     public String getPermission() {
         return authority;
     }

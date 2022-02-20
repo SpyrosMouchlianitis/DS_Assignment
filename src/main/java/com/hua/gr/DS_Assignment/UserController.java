@@ -16,7 +16,7 @@ public class UserController {
     //user/register?firstName=[firstName]&lastName=[lastName]&email=[email]&password=[password]
     @GetMapping("/user/register")
     public void register(@RequestParam String firstName, @RequestParam String lastName,
-                      @RequestParam String email, @RequestParam String password){
+                         @RequestParam String email, @RequestParam String password) {
 
         UserCatalog newUser = new UserCatalog();
         newUser.setFirstName(firstName);
@@ -39,14 +39,14 @@ public class UserController {
             session.getTransaction().commit();
 
 
-        }finally {
+        } finally {
             factory.close();
         }
 
     }
 
     @GetMapping("/user/login")
-    public void login(@RequestParam String email, @RequestParam String password){
+    public void login(@RequestParam String email, @RequestParam String password) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(UserCatalog.class).buildSessionFactory();
@@ -73,13 +73,13 @@ public class UserController {
             session.getTransaction().commit();
 
 
-        }finally {
+        } finally {
             factory.close();
         }
     }
 
     @GetMapping("/user/delete")
-    public void delete(@RequestParam String email){
+    public void delete(@RequestParam String email) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(UserCatalog.class).buildSessionFactory();
@@ -107,7 +107,7 @@ public class UserController {
             session.getTransaction().commit();
 
 
-        }finally {
+        } finally {
             factory.close();
         }
 
@@ -115,8 +115,8 @@ public class UserController {
 
 
     @RequestMapping("/user/update")
-    public void updateUser(@RequestParam int id,@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-                            @RequestParam String permission){
+    public void updateUser(@RequestParam int id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+                           @RequestParam String permission) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
                 addAnnotatedClass(UserCatalog.class).buildSessionFactory();
 
@@ -158,10 +158,35 @@ public class UserController {
 
             session.getTransaction().commit();
             return ResponseEntity.ok(users);
-        }finally {
+        } finally {
             factory.close();
         }
     }
+
+    @GetMapping("/users/new")
+    public void registerUser(@RequestParam String firstName, @RequestParam String lastName,
+                             @RequestParam String email, @RequestParam String password){
+
+        UserCatalog user = new UserCatalog(firstName, lastName, email, password , 1, "user" );
+
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(UserCatalog.class).buildSessionFactory();
+
+        try (factory) {
+            Session session = factory.getCurrentSession();
+
+            session.beginTransaction();
+
+            session.save(user);
+
+            session.getTransaction().commit();
+
+
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 
 
 
