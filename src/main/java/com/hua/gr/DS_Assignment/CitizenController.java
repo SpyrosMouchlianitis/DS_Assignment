@@ -86,9 +86,10 @@ public class CitizenController {
         try {
             session.beginTransaction();
 
-            String query1 = "from Citizen c where progress = :status";
+            String query1 = "from Citizen c where progress = :status or progress = :status1";
             Query finalQuery = session.createQuery(query1);
             finalQuery.setParameter("status", "KT");
+            finalQuery.setParameter("status1", "A");
 
             List<Citizen> citizensForAdmin = finalQuery.getResultList();
 
@@ -133,6 +134,27 @@ public class CitizenController {
             String query1 = "update Citizen c set c.progress = :progress where c.id = :id";
             Query finalQuery = session.createQuery(query1);
             finalQuery.setParameter("progress", "KT");
+            finalQuery.setParameter("id", id);
+
+            finalQuery.executeUpdate();
+            session.getTransaction().commit();
+        }
+
+    }
+
+    @RequestMapping("/citizen/final-accept")
+    public void finalAcceptUser(@RequestParam int id){
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(Citizen.class).buildSessionFactory();
+
+        try (factory) {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
+
+
+            String query1 = "update Citizen c set c.progress = :progress where c.id = :id";
+            Query finalQuery = session.createQuery(query1);
+            finalQuery.setParameter("progress", "A");
             finalQuery.setParameter("id", id);
 
             finalQuery.executeUpdate();
